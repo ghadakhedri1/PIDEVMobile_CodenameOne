@@ -36,13 +36,13 @@ import com.pidev.services.ServiceEVLieu;
 import com.codename1.ui.validation.RegexConstraint;
 import com.codename1.ui.validation.Validator;
 import rest.file.uploader.tn.FileUploader;
+
 /**
  *
  * @author ghada
  */
 public class AjouterJournal extends Form {
 
-   
     private Resources theme;
     Form form;
     Container f;
@@ -56,13 +56,10 @@ public class AjouterJournal extends Form {
     private FileUploader file;
     String fileNameInServer;
     private String imgPath;
-  
-
-    //Date tdate;
-
+    
     public AjouterJournal() {
         theme = UIManager.initFirstTheme("/theme_1");
-        form = new Form("Ajouter Journal",BoxLayout.y());
+        form = new Form("Ajouter Journal", BoxLayout.y());
         f = new Container(new BoxLayout(BoxLayout.Y_AXIS));
         Container c1 = new Container(new BoxLayout(BoxLayout.X_AXIS));
         Validator v = new Validator();
@@ -79,10 +76,10 @@ public class AjouterJournal extends Form {
         nbchasse.setHint("Nombre Chasse");
         Label nb = new Label("Nombre chasse");
         Label d = new Label("Date");
-        Label des = new Label("Description");   
-        Label imag = new Label("Image");   
-         Label rate=new Label("Rating :");
-       TextField sl = new TextField();
+        Label des = new Label("Description");
+        Label imag = new Label("Image");
+        Label rate = new Label("Rating :");
+        TextField sl = new TextField();
         sl.setEditable(true);
         ComboBox cmp = new ComboBox<Animal>();
         ComboBox cmpl = new ComboBox<Lieu>();
@@ -105,17 +102,17 @@ public class AjouterJournal extends Form {
         cmp.addActionListener((evt) -> {
 
             ida = listAnimal.get(cmp.getSelectedIndex());
-            //System.out.println(Ccateg.getSelectedItem().toString());
+            
         });
         cmpl.addActionListener((evt) -> {
 
             idl = listLieu.get(cmpl.getSelectedIndex());
-            //  System.out.println(Ccateg.getSelectedItem().toString());
+            
         });
         cmpe.addActionListener((evt) -> {
 
             idv = listev.get(cmpe.getSelectedIndex());
-            //  System.out.println(Ccateg.getSelectedItem().toString());
+            
         });
         btnajout = new Button("ajouter");
         btnajout.getUnselectedStyle().setFgColor(5542241);
@@ -123,32 +120,28 @@ public class AjouterJournal extends Form {
         btnedit = new Button("Modifier");
         Button upload = new Button("Upload");
         upload.setMaterialIcon(FontImage.MATERIAL_CLOUD_UPLOAD);
-       upload.addPointerReleasedListener(new ActionListener() {
-            
+        upload.addPointerReleasedListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent evt) {
-               
+
                 try {
-                    imgPath=Capture.capturePhoto();
+                    imgPath = Capture.capturePhoto();
                     System.out.println(imgPath);
                     String link = imgPath.toString();
-                    int pod =link.indexOf("/",2);
-                    String news =link.substring(pod+2,link.length());
-                    System.out.println(""+news);
+                    int pod = link.indexOf("/", 2);
+                    String news = link.substring(pod + 2, link.length());
+                    System.out.println("" + news);
                     FileUploader fu = new FileUploader("http://localhost/PIDEV/web");
-                    fileNameInServer=fu.upload(news);
+                    fileNameInServer = fu.upload(news);
                     path.setText(fileNameInServer);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
-                
-                
+
             }
         });
 
-       
-    
-       
         f.add(lieu);
         f.add(cmpl);
         f.add(animal);
@@ -162,17 +155,14 @@ public class AjouterJournal extends Form {
         f.add(des);
         f.add(tdescription);
         f.add(imag);
-       // f.add(path);
         f.add(upload);
         f.add(rate);
         f.add(sl);
-        
         c1.add(btnajout);
         c1.add(btnaff);
-        
         f.add(c1);
         form.add(f);
-        //form.show();
+        
         btnajout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -185,56 +175,50 @@ public class AjouterJournal extends Form {
                         if (Dialog.show("Error", "Nombre de chasse invalide", "ok", null)) {
                             form.show();
                         }
-                    }
-                    else {
-                    if ((Float.parseFloat(nbchasse.getText()) > 20) ) {
-                        if (Dialog.show("Error", "Max Nombre de chasse est 20", "ok", null)) {
-                            form.show();
-                        }
-                    }
-                    else {
-                    if (ida==null) {
-                        if (Dialog.show("Error", "Choisir un animal SVP ", "ok", null)) {
-                            form.show();
-                        }
-                    }
-                    else {
-                    if (idl==null) {
-                        if (Dialog.show("Error", "Choisir un Lieu SVP ", "ok", null)) {
-                            form.show();
-                        }
-                    }
-                    else {
-                    if (idv==null) {
-                        if (Dialog.show("Error", "Choisir Type d'evenement  SVP ", "ok", null)) {
-                            form.show();
-                        }
-                    }
-                    else {
-                    if ((Float.parseFloat(sl.getText()) >6) ) {
-                        if (Dialog.show("Error", "Rating de 0 à 6 ", "ok", null)) {
-                            form.show();
-                        }
-                    }
-                    else {
+                    } else {
+                        if ((Float.parseFloat(nbchasse.getText()) > 20)) {
+                            if (Dialog.show("Error", "Max Nombre de chasse est 20", "ok", null)) {
+                                form.show();
+                            }
+                        } else {
+                            if (ida == null) {
+                                if (Dialog.show("Error", "Choisir un animal SVP ", "ok", null)) {
+                                    form.show();
+                                }
+                            } else {
+                                if (idl == null) {
+                                    if (Dialog.show("Error", "Choisir un Lieu SVP ", "ok", null)) {
+                                        form.show();
+                                    }
+                                } else {
+                                    if (idv == null) {
+                                        if (Dialog.show("Error", "Choisir Type d'evenement  SVP ", "ok", null)) {
+                                            form.show();
+                                        }
+                                    } else {
+                                        if ((Float.parseFloat(sl.getText()) > 6)) {
+                                            if (Dialog.show("Error", "Rating de 0 à 6 ", "ok", null)) {
+                                                form.show();
+                                            }
+                                        } else {
+                                            try {
+                                                User u = new User(3);
+                                                Journal t = new Journal(u, idv, Integer.parseInt(nbchasse.getText()), ida, idl, p.getDate(), fileNameInServer, tdescription.getText(), Integer.parseInt(sl.getText()));
+                                                ser.ajoutJournal(t);
+                                                sendMail("ghada.khedri1@esprit.tn");
+                                                System.out.println(t);
+                                            } catch (Exception ex) {
+                                                ex.printStackTrace();
+                                            }
 
-                        try {
-                            User u = new User(3);
-
-                            Journal t = new Journal(u, idv, Integer.parseInt(nbchasse.getText()), ida, idl, p.getDate(),fileNameInServer,tdescription.getText(),Integer.parseInt(sl.getText()));
-                           
-
-                            ser.ajoutJournal(t);
-             
-                           //sendMail("ghada.khedri1@esprit.tn");
-                            System.out.println(t);
-                        } catch (Exception ex) {
-                            ex.printStackTrace();
+                                        }
+                                    }
+                                }
+                            }
                         }
-
                     }
                 }
-            }}}}}}
+            }
         });
 
         btnaff.addActionListener((e) -> {
@@ -248,7 +232,7 @@ public class AjouterJournal extends Form {
         });
         form.show();
     }
-    
+
     public void sendMail(String Email) {
         ConnectionRequest req = new ConnectionRequest();
         req.setUrl("http://localhost/journal/sendmail.php?email=" + Email);
@@ -274,7 +258,5 @@ public class AjouterJournal extends Form {
     public void setF(Form form) {
         this.form = form;
     }
-
-  
 
 }
