@@ -10,6 +10,7 @@ package com.pidev.entities;
  * @author ghada
  */
 public class Lieu {
+
     int id;
     String nom_lieu;
 
@@ -45,5 +46,5 @@ public class Lieu {
     public String toString() {
         return "Lieu{" + "id=" + id + ", nom_lieu=" + nom_lieu + '}';
     }
-    
+
 }
