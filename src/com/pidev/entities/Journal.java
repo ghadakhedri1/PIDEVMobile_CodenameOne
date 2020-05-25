@@ -84,19 +84,6 @@ public class Journal {
     public void setLieu(Lieu lieu) {
         this.lieu = lieu;
     }
-
-  
-    
-
-   
-
-    
-
-   
-
-   
-
-    
     public int getNbChasse() {
         return nbChasse;
     }
