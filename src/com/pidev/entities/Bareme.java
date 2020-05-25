@@ -10,6 +10,7 @@ package com.pidev.entities;
  * @author ghada
  */
 public class Bareme {
+
     private int id;
 
     public int getId() {
@@ -32,7 +33,6 @@ public class Bareme {
         this.note = note;
     }
 
-    
     public int getMin() {
         return min;
     }
@@ -56,5 +56,5 @@ public class Bareme {
     public void setNote(int note) {
         this.note = note;
     }
-    
+
 }
