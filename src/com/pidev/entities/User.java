@@ -12,12 +12,13 @@ import java.util.Date;
  * @author ghada
  */
 public class User {
+
     private int id;
     private String username;
     private String usernameCanonical;
     private String email;
     private String emailCanonical;
-    public  static String Roles;
+    public static String Roles;
     private int enabled = 1;
     private String salt;
     private String password;
@@ -157,5 +158,4 @@ public class User {
         return "User{" + "id=" + id + ", username=" + username + '}';
     }
 
-    
 }
