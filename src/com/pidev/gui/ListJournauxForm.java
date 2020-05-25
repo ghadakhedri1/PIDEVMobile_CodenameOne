@@ -10,7 +10,6 @@ import com.codename1.components.ImageViewer;
 import com.pidev.entities.Journal;
 import com.pidev.services.ServiceJournal;
 import com.codename1.l10n.SimpleDateFormat;
-import com.codename1.notifications.LocalNotification;
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
 import com.codename1.ui.Label;
@@ -18,7 +17,6 @@ import com.codename1.ui.TextField;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
-import java.io.IOException;
 import java.util.ArrayList;
 import com.codename1.ui.Button;
 import com.codename1.ui.Display;
@@ -35,7 +33,6 @@ import com.codename1.ui.URLImage;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.FlowLayout;
-import java.util.Random;
 
 /**
  *
@@ -53,7 +50,6 @@ public class ListJournauxForm {
     public ListJournauxForm() {
         theme = UIManager.initFirstTheme("/theme_1");
         f = new Form("Liste Journaux", BoxLayout.y());
-
         ArrayList<Journal> journaux = new ArrayList<>();
         ServiceJournal ce = new ServiceJournal();
         journaux.addAll(ServiceJournal.getInstance().getAllTasks(3));
@@ -118,9 +114,7 @@ public class ListJournauxForm {
                 URLImage urli = URLImage.createToStorage(en, li.getImage(), "http://localhost/PIDEV/web/uploads/" + li.getImage());
                 ImageViewer img = new ImageViewer();
                 img.setImage(urli);
-
                 c.add(img);
-
                 Button service1 = new Button("score");
                 service1.getAllStyles().setFgColor(ColorUtil.rgb(24, 242, 0));
                 service1.setIcon(FontImage.createMaterial(FontImage.MATERIAL_REPLY, service1.getUnselectedStyle()));
@@ -144,11 +138,8 @@ public class ListJournauxForm {
                 });
                 c.add(modif);
                 c.add(supp);
-
                 f.add(c);
-
                 System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-
             }
         } else {
             f.add(new Label("Aucun Journal a afficher"));
@@ -211,13 +202,11 @@ public class ListJournauxForm {
         sl = createStarRankSlider();
         moy = a.getId_chasseur();
         sl.setProgress((int) moy);
-
         c.add(animal);
         c.add(lieu);
         c.add(nbchasse);
         c.add(d);
         c.add(desc);
-
         Image placeholder1 = Image.createImage(800, 800);
         EncodedImage en = EncodedImage.createFromImage(placeholder1, false);
         URLImage urli = URLImage.createToStorage(en, a.getImage(), "http://localhost/PIDEV/web/uploads/" + a.getImage());
@@ -234,24 +223,20 @@ public class ListJournauxForm {
         c.add(service1);
         c.add(FlowLayout.encloseCenter(sl));
         supp = new Button("Supprimer");
-                supp.addActionListener((evt) -> {
-                    ServiceJournal service = new ServiceJournal();
-                    service.supprimerJournal(a);
-                    ListJournauxForm l = new ListJournauxForm();
-                    l.getF().show();
-                });
-                modif = new Button("Modifier");
-                modif.addActionListener((evt) -> {
-                    ModifJournal m = new ModifJournal(a);
-                    m.getF().show();
-                });
-                c.add(modif);
-                c.add(supp);
-
+        supp.addActionListener((evt) -> {
+            ServiceJournal service = new ServiceJournal();
+            service.supprimerJournal(a);
+            ListJournauxForm l = new ListJournauxForm();
+            l.getF().show();
+        });
+        modif = new Button("Modifier");
+        modif.addActionListener((evt) -> {
+            ModifJournal m = new ModifJournal(a);
+            m.getF().show();
+        });
+        c.add(modif);
+        c.add(supp);
         f.add(c);
-
-        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-
         f.refreshTheme();
     }
 
