@@ -10,9 +10,11 @@ package com.pidev.entities;
  * @author ghada
  */
 public class Evenement {
+
     private int id;
     private User user;
     private TypeEvents type_events;
+
     public Evenement() {
     }
 
@@ -54,6 +56,5 @@ public class Evenement {
     public String toString() {
         return "Evenement{" + "id=" + id + ", type_events=" + type_events + '}';
     }
-    
-    
+
 }
