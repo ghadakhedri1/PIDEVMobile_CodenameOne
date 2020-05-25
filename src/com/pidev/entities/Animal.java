@@ -10,9 +10,11 @@ package com.pidev.entities;
  * @author ghada
  */
 public class Animal {
+
     int id;
     String nom_animal;
-  public Animal() {
+
+    public Animal() {
     }
 
     public Animal(int id, String nom_animal) {
@@ -44,5 +46,5 @@ public class Animal {
     public String toString() {
         return "Animal{" + "id=" + id + ", nom_animal=" + nom_animal + '}';
     }
-    
+
 }
